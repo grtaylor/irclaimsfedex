@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2524" systemVersion="12A217" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="12C54" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="5">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1863"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -19,38 +19,147 @@
             </objects>
             <point key="canvasLocation" x="448" y="-630"/>
         </scene>
-        <!--class Prefix:identifier Detail View Controller - Detail-->
+        <!--Detail View Controller - Detail-->
         <scene sceneID="16">
             <objects>
-                <viewController storyboardIdentifier="" title="Detail" id="4" customClass="DetailViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="26">
+                <viewController storyboardIdentifier="detail" title="Detail" id="4" customClass="DetailViewController" sceneMemberID="viewController">
+                    <view key="view" autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" id="26">
                         <rect key="frame" x="0.0" y="64" width="703" height="704"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label translatesAutoresizingMaskIntoConstraints="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" lineBreakMode="tailTruncation" autoshrinkMode="none" minimumFontSize="10" text="Detail view content goes here" textAlignment="center" id="27">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="TopLeft" pagingEnabled="YES" delaysContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCx-ev-8IM">
+                                <subviews>
+                                    <imageView contentMode="TopLeft" image="Vertafore_Watermark.png" translatesAutoresizingMaskIntoConstraints="NO" id="fQ3-EO-RZW">
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="qnW-WS-PLt" appends="YES" id="eT2-DU-Psd"/>
+                                            <outletCollection property="gestureRecognizers" destination="zfV-HQ-NB1" appends="YES" id="T2p-4F-n4N"/>
+                                        </connections>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="fQ3-EO-RZW" firstAttribute="leading" secondItem="cCx-ev-8IM" secondAttribute="leading" constant="6" id="DUo-Ti-xlr"/>
+                                    <constraint firstItem="fQ3-EO-RZW" firstAttribute="top" secondItem="cCx-ev-8IM" secondAttribute="top" constant="6" id="RWf-at-9g8"/>
+                                    <constraint firstAttribute="trailing" secondItem="fQ3-EO-RZW" secondAttribute="trailing" constant="447" id="fFY-o2-ruA"/>
+                                    <constraint firstAttribute="bottom" secondItem="fQ3-EO-RZW" secondAttribute="bottom" constant="529" id="gk8-I2-Yhz"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="4" id="wGw-YQ-5hD"/>
+                                </connections>
+                            </scrollView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Page Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jc3-nO-ff9">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="310" id="VKl-Ta-xba"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" size="system"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k8D-cn-ppm">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="sjj-0d-fw8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="of" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Why-Au-I7P">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="7z4-Vn-Yr1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="5" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ql4-2D-B9b">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="qeb-XE-8du"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="27" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="CON-Cb-dBe"/>
-                            <constraint firstItem="27" firstAttribute="leading" secondItem="26" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="LAk-gc-aCl"/>
-                            <constraint firstItem="27" firstAttribute="centerY" secondItem="26" secondAttribute="centerY" type="default" id="fbb-bQ-YI1"/>
+                            <constraint firstItem="Ql4-2D-B9b" firstAttribute="baseline" secondItem="Why-Au-I7P" secondAttribute="baseline" type="default" id="1p2-6O-eFU"/>
+                            <constraint firstAttribute="trailing" secondItem="k8D-cn-ppm" secondAttribute="trailing" constant="77" id="2Jm-7h-ndy"/>
+                            <constraint firstAttribute="trailing" secondItem="Ql4-2D-B9b" secondAttribute="trailing" constant="13" id="7Nl-4X-mRD"/>
+                            <constraint firstAttribute="trailing" secondItem="Why-Au-I7P" secondAttribute="trailing" constant="38" id="7wi-4h-fNL"/>
+                            <constraint firstAttribute="bottom" secondItem="cCx-ev-8IM" secondAttribute="bottom" constant="19" id="FEq-1D-FF9"/>
+                            <constraint firstItem="jc3-nO-ff9" firstAttribute="leading" secondItem="26" secondAttribute="leading" constant="15" id="XmS-J3-pHQ"/>
+                            <constraint firstItem="Why-Au-I7P" firstAttribute="baseline" secondItem="k8D-cn-ppm" secondAttribute="baseline" type="default" id="Xy5-l0-FAd"/>
+                            <constraint firstItem="cCx-ev-8IM" firstAttribute="top" secondItem="26" secondAttribute="top" constant="37" id="bUl-6F-nSA"/>
+                            <constraint firstItem="jc3-nO-ff9" firstAttribute="top" secondItem="26" secondAttribute="top" constant="7" id="jXI-6c-Xqy"/>
+                            <constraint firstItem="cCx-ev-8IM" firstAttribute="leading" secondItem="26" secondAttribute="leading" type="default" id="ljK-Hw-pzc"/>
+                            <constraint firstItem="k8D-cn-ppm" firstAttribute="baseline" secondItem="jc3-nO-ff9" secondAttribute="baseline" type="default" id="oSg-S3-nhQ"/>
+                            <constraint firstItem="cCx-ev-8IM" firstAttribute="trailing" secondItem="26" secondAttribute="trailing" type="default" id="ufD-5Q-rY4"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detail" id="53"/>
                     <connections>
-                        <outlet property="detailDescriptionLabel" destination="27" id="29"/>
+                        <outlet property="currentPageDescription" destination="jc3-nO-ff9" id="pyB-wp-Pxt"/>
+                        <outlet property="currentPageNumber" destination="k8D-cn-ppm" id="T8K-iZ-YX4"/>
+                        <outlet property="imageView" destination="fQ3-EO-RZW" id="L7d-h2-zbg"/>
+                        <outlet property="ofLabel" destination="Why-Au-I7P" id="vIC-i8-2Ze"/>
+                        <outlet property="scrollview" destination="cCx-ev-8IM" id="wx7-Vh-p5k"/>
+                        <outlet property="totalPageCount" destination="Ql4-2D-B9b" id="zIf-0C-dlg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="zfV-HQ-NB1">
+                    <connections>
+                        <action selector="handleSwipe:" destination="4" id="wAi-Be-A4Z"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="qnW-WS-PLt">
+                    <connections>
+                        <action selector="handleSwipe:" destination="4" id="ZKa-RI-6pE"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="448" y="248"/>
+        </scene>
+        <!--Add Page View Controller-->
+        <scene sceneID="tbe-Bd-d5h">
+            <objects>
+                <viewController storyboardIdentifier="addPage" id="2N0-R1-grB" customClass="AddPageViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2AR-q9-HwT">
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Image Description" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pge-Kh-RsU">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="479" id="4Xk-zS-s02"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TVL-NY-e73">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="356" id="Wow-EG-xTU"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Pge-Kh-RsU" firstAttribute="leading" secondItem="2AR-q9-HwT" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Ng1-LB-SbK"/>
+                            <constraint firstItem="Pge-Kh-RsU" firstAttribute="top" secondItem="2AR-q9-HwT" secondAttribute="top" constant="20" symbolic="YES" type="default" id="TL9-pC-5qF"/>
+                            <constraint firstItem="Pge-Kh-RsU" firstAttribute="trailing" secondItem="TVL-NY-e73" secondAttribute="trailing" type="default" id="cCp-oH-ueI"/>
+                            <constraint firstItem="TVL-NY-e73" firstAttribute="top" secondItem="2AR-q9-HwT" secondAttribute="top" constant="63" id="n0J-QI-0CI"/>
+                            <constraint firstItem="TVL-NY-e73" firstAttribute="leading" secondItem="2AR-q9-HwT" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="u4n-Ak-r4J"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageview" destination="TVL-NY-e73" id="4gd-sc-NH6"/>
+                        <outlet property="pageDescription" destination="Pge-Kh-RsU" id="m2m-vi-5oI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CEV-l1-ibJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1258" y="-322"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="18">
@@ -68,10 +177,10 @@
             </objects>
             <point key="canvasLocation" x="-687" y="-630"/>
         </scene>
-        <!--class Prefix:identifier Master View Controller - Master-->
+        <!--Master View Controller - Master-->
         <scene sceneID="24">
             <objects>
-                <tableViewController storyboardIdentifier="" title="Master" clearsSelectionOnViewWillAppear="NO" id="19" customClass="MasterViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="master" title="Master" clearsSelectionOnViewWillAppear="NO" id="19" customClass="MasterViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="20">
                         <rect key="frame" x="0.0" y="64" width="320" height="704"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -85,12 +194,12 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" lineBreakMode="tailTruncation" autoshrinkMode="none" baselineAdjustment="alignBaselines" text="Title" adjustsFontSizeToFit="NO" id="tIi-5l-S0i">
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tIi-5l-S0i">
                                             <rect key="frame" x="10" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -126,6 +235,9 @@
             <point key="canvasLocation" x="-366" y="248"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Vertafore_Watermark.png" width="250" height="113"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
