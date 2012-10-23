@@ -14,4 +14,7 @@
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 
+@property (nonatomic, strong) NSMutableArray *containers;
+@property (nonatomic, strong) NSString *name;
+
 @end

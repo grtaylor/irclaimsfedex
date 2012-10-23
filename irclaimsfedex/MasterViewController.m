@@ -7,15 +7,18 @@
 //
 
 #import "MasterViewController.h"
-
+#import "DataBuilder.h"
+#import "DocumentInfo.h"
 #import "DetailViewController.h"
 
 @interface MasterViewController () {
-    NSMutableArray *_objects;
+    NSMutableArray* data;
 }
 @end
 
 @implementation MasterViewController
+
+@synthesize containers,name;
 
 - (void)awakeFromNib
 {
@@ -30,11 +33,22 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+    //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
+    //self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    
+    if (containers == NULL){
+        self.title = @"File Content";
+        DataBuilder* builder = [[DataBuilder alloc] init];
+        [builder createData];
+        data = [builder getData];
+    }
+    else{
+        data = containers;
+        self.title = name;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,10 +59,10 @@
 
 - (void)insertNewObject:(id)sender
 {
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
+    if (!data) {
+        data = [[NSMutableArray alloc] init];
     }
-    [_objects insertObject:[NSDate date] atIndex:0];
+    [data insertObject:[NSDate date] atIndex:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
@@ -62,15 +76,30 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _objects.count;
+    return data.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-
-    NSDate *object = _objects[indexPath.row];
-    cell.textLabel.text = [object description];
+    static NSString *simpleTableIdentifier = @"SimpleTableItem";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+    }
+    
+    Structure* structure = [data objectAtIndex:indexPath.row];
+    cell.textLabel.text = structure.description;
+    if (structure.type == Folder){
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        cell.imageView.image = [UIImage imageNamed:@"folder.png"];
+    }
+    else if (structure.type == Document){
+        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+                cell.imageView.image = [UIImage imageNamed:@"document.png"];
+    }
     return cell;
 }
 
@@ -83,7 +112,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_objects removeObjectAtIndex:indexPath.row];
+        [data removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
@@ -108,9 +137,38 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        NSDate *object = _objects[indexPath.row];
-        self.detailViewController.detailItem = object;
+    Structure* structure = [data objectAtIndex:indexPath.row];
+    NSMutableArray* children = structure.children;
+    
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:[NSBundle mainBundle]];
+    if (structure.type == Folder){
+        MasterViewController  *controller = [storyBoard instantiateViewControllerWithIdentifier:@"master"];
+        
+        //controller.managedObjectContext = self.managedObjectContext;
+        //controller.title = catalogue.name;
+        controller.containers = children;
+        controller.name = structure.description;
+        [[self navigationController] pushViewController:controller animated:YES];
+        self.detailViewController.document = NULL;
+    }
+    else if (structure.type == Document){
+    
+    
+        //DetailViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"detail"];
+
+        //controller.managedObjectContext = self.managedObjectContext;
+        //controller.title = catalogue.name;
+        //DocumentInfo *document = [[DocumentInfo alloc] init];
+        //document.documentDescription = structure.description;
+        
+        DocumentInfo * info = (DocumentInfo *) structure;
+        
+        //controller.document = info;
+        
+        //[[self navigationController] pushViewController:controller animated:YES];
+        
+        self.detailViewController.document = info;
+        self.detailViewController.detailItem = @"1";
     }
 }
 
@@ -118,7 +176,7 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = _objects[indexPath.row];
+        NSDate *object = data[indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
     }
 }
